@@ -5,5 +5,11 @@ Console.WriteLine("Hello, World!");
 
 NorthwindContext context = new();
 
-var data = context.Employees.ToList();
-Console.WriteLine($"Employees: {data}");
+
+#region Group By
+var data = context.Products.GroupBy(x => x.SupplierId).Select(x => new 
+{
+    Count = x.Count()
+}).ToList();
+#endregion
+Console.WriteLine($"Employees: {data}"); 
